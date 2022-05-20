@@ -8,22 +8,26 @@ class MainTest
     @Test
     public void shouldBeFalseWhenIsOutOfRange()
     {
-        Assert.assertFalse(Main.checkHistoryLift(3, "GGGDDDD"));
-        Assert.assertFalse(Main.checkHistoryLift(3, "GGGGDDD"));
-        Assert.assertFalse(Main.checkHistoryLift(3, "GGGDDGGG"));
+        Assert.assertFalse(new Elevator(3, "GGGDDDGDDD").checkHistoryLift());
+        Assert.assertFalse(new Elevator(3, "DGGGDGG").checkHistoryLift());
+        Assert.assertFalse(new Elevator(3, "DDDD").checkHistoryLift());
+        Assert.assertFalse(new Elevator(3, "DDGGGDDGGG").checkHistoryLift());
+        Assert.assertFalse(new Elevator(3, "GGDDDGDD").checkHistoryLift());
     }
 
     @Test
     public void shouldBeFalseWhenWrongLetterIsGiven()
     {
-        Assert.assertFalse(Main.checkHistoryLift(3, "ABC"));
+        Assert.assertFalse(new Elevator(3, "GGA").checkHistoryLift());
+        Assert.assertFalse(new Elevator(3, "GGGDDGGX").checkHistoryLift());
     }
 
     @Test
     public void shouldBeTrue()
     {
-        Assert.assertTrue(Main.checkHistoryLift(3, "D"));
-        Assert.assertTrue(Main.checkHistoryLift(3, "GGGDDGG"));
-        Assert.assertTrue(Main.checkHistoryLift(2, "DGDGDGDGDGDG"));
+        Assert.assertTrue(new Elevator(3, "GGGDDDGD").checkHistoryLift());
+        Assert.assertTrue(new Elevator(3, "D").checkHistoryLift());
+        Assert.assertTrue(new Elevator(3, "GGGDGDDDGG").checkHistoryLift());
+        Assert.assertTrue(new Elevator(3, "GGGDDD").checkHistoryLift());
     }
 }
